@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ReactCar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="stylesheet" href="app.css">
+
+</head>
+<body>
+
+<div id="root">
+
+</div>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+<script type="text/babel">
+    function Car(props) {
+        return (
+            <div className="card">
+                <div className="card-img">
+                    <img src={props.car.img} alt={props.car.name}/>
+                </div>
+                <h3>{props.car.name}</h3>
+                <p>{props.car.price}</p>
+            </div>
+        )
+    }
+
+    class App extends React.Component {
+        state = {
+            cars: [
+                {name: 'Bmw 4 series ', price: 21000, img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'},
+                {name: 'Bmw 3 series ', price: 19000, img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'},
+                {name: 'Bmw 2 series ', price: 18000, img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'},
+                {name: 'Bmw 5 series ', price: 25000, img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'}
+            ]
+        }
+        renderCars() {
+           return this.state.cars.map(car => {
+                return (
+                    <Car car = {car}  key={car.name + Math.random()}/>
+                )
+            })
+        }
+        render() {
+            return (
+                <div className="app">
+                <div className="list">
+                    {this.renderCars()}
+                </div>
+            </div>
+            )
+
+        }
+    }
+    // load will time long
+
+    ReactDOM.render(
+        <App />,
+        document.getElementById("root")
+    )
+</script>
+</body>
+</html>
