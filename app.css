@@ -39,4 +39,8 @@ body {
 .card img {
     width: 100%;
 }
+.marked{
+    color: darkred;
+    border: 2px solid darkred;
+}
 
