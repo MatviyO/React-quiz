@@ -11,104 +11,16 @@
 <body>
 
 <div id="root">
-
 </div>
+
+<div id="header"></div>
+<div id="container"></div>
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+<script type="text/babel" src="react.js">
 
 
-<script type="text/babel">
-    function Car(props) {
-
-        const classes = ['card'];
-        if(props.car.marked) {
-            classes.push('marked');
-        }
-
-        return (
-            <div className={classes.join(' ')} onClick={props.onMark}>
-                <div className="card-img">
-                    <img src={props.car.img} alt={props.car.name}/>
-                </div>
-                <h3>{props.car.name}</h3>
-                <p>{props.car.price}</p>
-            </div>
-        )
-    }
-
-    class App extends React.Component {
-        state = {
-            cars: [
-                {marked: false, name: 'Bmw 4 series ', price: 21000, img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'},
-                {marked: false, name: 'Bmw 3 series ', price: 19000, img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'},
-                {marked: false, name: 'Bmw 2 series ', price: 18000, img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'},
-                {marked: false, name: 'Bmw 5 series ', price: 25000, img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'}
-            ],
-            visible: true,
-            appTitle: 'Cars application'
-        }
-        toggleHandler() {
-            this.setState({visible: !this.state.visible})
-        }
-        titleChangeHandler(title) {
-            if(title.trim() === '') {
-                return
-            }
-           this.setState({
-               appTitle: title
-           })
-        }
-        handleMarked(name) {
-            const cars = this.state.cars.concat();
-            const car = cars.find(c => c.name === name)
-            car.marked = !car.marked;
-            this.setState({ cars: cars})
-        }
-        renderCars() {
-            if(!this.state.visible) {
-                return null
-            }
-           return this.state.cars.map(car => {
-                return (
-                    <Car car = {car}
-                         key={car.name + Math.random()}
-                         onMark={this.handleMarked.bind(this, car.name)}
-
-
-                    />
-                )
-            })
-        }
-        render() {
-            const style = {
-                marginRight: 20
-            }
-            return (
-                <div className="app">
-                    <h2>{this.state.appTitle}</h2>
-                    <input
-                        onChange={(event) => this.titleChangeHandler(event.target.value)}
-                        value={this.state.appTitle}
-                        type="text" placeholder="Chane title" />
-                    <button
-                            style={style}
-                        onClick={() => {this.toggleHandler()}}>toggle</button>
-                    <hr />
-                <div className="list">
-                    {this.renderCars()}
-                </div>
-            </div>
-            )
-
-        }
-    }
-
-
-    ReactDOM.render(
-        <App />,
-        document.getElementById("root")
-    )
 </script>
 </body>
 </html>
