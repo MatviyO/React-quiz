@@ -20,12 +20,18 @@ class App extends Component {
             pageTitle: newTitle 
         })
     }
+    handleInput = (event) => {
+       this.setState({
+           pageTitle: event.target.value
+       })
+    }
+
 
     render() {
         // const divStyle = {
         //     'color': 'red'
         // }
-        const cars = this.state.cars;
+
         return (
             <div className="App">
                 <header className="App-header">
@@ -44,10 +50,18 @@ class App extends Component {
                 </header>
                 <div className="container">
                     <span>{this.state.pageTitle}</span>
+                    <input type="text" onChange={this.handleInput} />
                     <button onClick={this.changeTitleHandler.bind(this, 'changed')} >Button</button>
-                    <Car  name={cars[0].name} year={cars[0].year} img={cars[0].img}  onChangeTitle={this.changeTitleHandler.bind(this, cars[0].name)} />
-                    <Car name={cars[1].name} year={cars[1].year} img={cars[1].img} onChangeTitle={() => this.changeTitleHandler(cars[1].name)}/>
-                    <Car name={cars[2].name} year={cars[2].year} img={cars[2].img} />
+                    {this.state.cars.map((car, index) => {
+                        return (
+                            <Car key={index} name={car.name} price={car.price} img={car.image} onChangeTitle={() => {
+                                this.changeTitleHandler(car.name)
+                            }} />
+                        )
+                    })}
+                    {/*<Car  name={cars[0].name} year={cars[0].year} img={cars[0].img}  onChangeTitle={this.changeTitleHandler.bind(this, cars[0].name)} />*/}
+                    {/*<Car name={cars[1].name} year={cars[1].year} img={cars[1].img} onChangeTitle={() => this.changeTitleHandler(cars[1].name)}/>*/}
+                    {/*<Car name={cars[2].name} year={cars[2].year} img={cars[2].img} />*/}
 
                 </div>
             </div>
