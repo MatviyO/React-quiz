@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
+import appCSS from './App.css';
 import Car from './Car/Car'
+
 
 class App extends Component {
     state = {
@@ -63,35 +63,30 @@ class App extends Component {
         }
 
         return (
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <div className="container">
-                        <span style={divStyle}>{this.state.pageTitle}</span>
-                        <button onClick={this.toggleCarHandler}>Toggle cars</button>
-                        {this.state.showCars ?
-                            this.state.cars.map((car, index) => {
-                                return (
-                                    <div style={{
-                                        width: 400,
-                                        margin: 'auto',
-                                        paddingTop: '20px'
-                                    }}>
-                                        <Car key={index} name={car.name} price={car.price}
-                                             img={car.img}
-                                             onDelete={this.deleteHandler.bind(this, index)}
-                                             onChangeName={(event) => {
-                                                 this.onChangeName(event.target.value, index)
-                                             }}
-                                        />
-                                    </div>
-                                )
-                            })
-                            : null
-                        }
-                    </div>
-                </header>
+            <div className={appCSS.App}>
 
+                <span style={divStyle}>{this.state.pageTitle}</span>
+                <button className={'AppButton'} onClick={this.toggleCarHandler}>Toggle cars</button>
+                {this.state.showCars ?
+                    this.state.cars.map((car, index) => {
+                        return (
+                            <div style={{
+                                width: 400,
+                                margin: 'auto',
+                                paddingTop: '20px'
+                            }}>
+                                <Car key={index} name={car.name} price={car.price}
+                                     img={car.img}
+                                     onDelete={this.deleteHandler.bind(this, index)}
+                                     onChangeName={(event) => {
+                                         this.onChangeName(event.target.value, index)
+                                     }}
+                                />
+                            </div>
+                        )
+                    })
+                    : null
+                }
             </div>
         )
     };

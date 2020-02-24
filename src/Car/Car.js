@@ -1,21 +1,25 @@
 import React from 'react';
-import './Car.css';
+import classes from './Car.css';
+// import Radium from 'radium';//
 
-
-const car = (props) => {
-    const inputClasses = ['input']
+const Car = (props) => {
+    const inputClasses = [classes.input]
     if (props.name !== '') {
-        inputClasses.push('green')
+        inputClasses.push(classes.green)
     } else {
-        inputClasses.push('red')
+        inputClasses.push(classes.red)
     }
     if (props.name.length > 4) {
-        inputClasses.push('bold')
+        inputClasses.push(classes.bold)
+    }
+    const style = {
+        border: '1px solid #ccc',
+        boxShadow: '0 4px 5px 0 rgba(0, 0, 0, .14'
     }
     return (
-        <div className="Car">
-            <div className="card-img">
-                <img src={props.img} alt={props.name}/>
+        <div className={classes.Car} style={style}>
+            <div >
+                <img className={classes.img} src={props.img} alt={props.name}/>
             </div>
             <h3>{props.name}</h3>
             <p>{props.price}</p>
@@ -28,4 +32,4 @@ const car = (props) => {
     )
 }
 
-export default car
+export default Car
