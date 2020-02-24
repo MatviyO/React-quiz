@@ -6,64 +6,92 @@ import Car from './Car/Car'
 class App extends Component {
     state = {
         cars: [
-            { name: 'Bmw 4 series ', price: 21000, img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'},
-            { name: 'Bmw 3 series ', price: 19000, img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'},
-            { name: 'Bmw 2 series ', price: 18000, img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'},
-            { name: 'Bmw 5 series ', price: 25000, img: 'http://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'}
+            {
+                name: 'Bmw 4 series ',
+                price: 21000,
+                img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'
+            },
+            {
+                name: 'Bmw 3 series ',
+                price: 19000,
+                img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'
+            },
+            {
+                name: 'Bmw 2 series ',
+                price: 18000,
+                img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'
+            },
+            {
+                name: 'Bmw 5 series ',
+                price: 25000,
+                img: 'http://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'
+            }
 
         ],
-        pageTitle: 'React components'
+        pageTitle: 'React components',
+        showCars: false
     }
 
-    changeTitleHandler = (newTitle) => {
+    toggleCarHandler = () => {
         this.setState({
-            pageTitle: newTitle 
+            showCars: !this.state.showCars
         })
     }
-    handleInput = (event) => {
-       this.setState({
-           pageTitle: event.target.value
-       })
+
+    onChangeName(name, index) {
+        const car = this.state.cars[index];
+        car.name = name
+        const cars = [...this.state.cars]
+        cars[index] = car;
+        this.setState({
+            cars: cars
+        })
+    }
+
+    deleteHandler(index) {
+        const cars = this.state.cars.concat();
+        cars.splice(index, 1)
+        this.setState({
+            cars: cars
+        })
     }
 
 
     render() {
-        // const divStyle = {
-        //     'color': 'red'
-        // }
+        const divStyle = {
+            'color': 'red'
+        }
 
         return (
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo"/>
-                    <p>
-                        Edit <code>src/App.js</code> and save to reload.
-                    </p>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn React
-                    </a>
+                    <div className="container">
+                        <span style={divStyle}>{this.state.pageTitle}</span>
+                        <button onClick={this.toggleCarHandler}>Toggle cars</button>
+                        {this.state.showCars ?
+                            this.state.cars.map((car, index) => {
+                                return (
+                                    <div style={{
+                                        width: 400,
+                                        margin: 'auto',
+                                        paddingTop: '20px'
+                                    }}>
+                                        <Car key={index} name={car.name} price={car.price}
+                                             img={car.img}
+                                             onDelete={this.deleteHandler.bind(this, index)}
+                                             onChangeName={(event) => {
+                                                 this.onChangeName(event.target.value, index)
+                                             }}
+                                        />
+                                    </div>
+                                )
+                            })
+                            : null
+                        }
+                    </div>
                 </header>
-                <div className="container">
-                    <span>{this.state.pageTitle}</span>
-                    <input type="text" onChange={this.handleInput} />
-                    <button onClick={this.changeTitleHandler.bind(this, 'changed')} >Button</button>
-                    {this.state.cars.map((car, index) => {
-                        return (
-                            <Car key={index} name={car.name} price={car.price} img={car.image} onChangeTitle={() => {
-                                this.changeTitleHandler(car.name)
-                            }} />
-                        )
-                    })}
-                    {/*<Car  name={cars[0].name} year={cars[0].year} img={cars[0].img}  onChangeTitle={this.changeTitleHandler.bind(this, cars[0].name)} />*/}
-                    {/*<Car name={cars[1].name} year={cars[1].year} img={cars[1].img} onChangeTitle={() => this.changeTitleHandler(cars[1].name)}/>*/}
-                    {/*<Car name={cars[2].name} year={cars[2].year} img={cars[2].img} />*/}
 
-                </div>
             </div>
         )
     };
