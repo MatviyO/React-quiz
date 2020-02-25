@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import appCSS from './App.css';
 import Car from './Car/Car'
-
+import ErrorBundary from './ErrorBundary/ErrorBundary';
+import Counter from './Counter/Counter';
 class App extends Component {
 
     constructor(props) {
@@ -75,7 +76,9 @@ class App extends Component {
         return (
             <div className={appCSS.App}>
                 <span style={divStyle}>{this.state.pageTitle}</span>
-                <span style={divStyle}>{this.props.title}</span>
+               <div>
+                   <Counter  />
+               </div>
                 <button className={'AppButton'} onClick={this.toggleCarHandler}>Toggle cars</button>
                 {this.state.showCars ?
                     this.state.cars.map((car, index) => {
@@ -85,13 +88,15 @@ class App extends Component {
                                 margin: 'auto',
                                 paddingTop: '20px'
                             }}>
-                                <Car key={index} name={car.name} price={car.price}
+                                <ErrorBundary key={index}>
+                                <Car  name={car.name} price={car.price}
                                      img={car.img}
                                      onDelete={this.deleteHandler.bind(this, index)}
                                      onChangeName={(event) => {
                                          this.onChangeName(event.target.value, index)
                                      }}
                                 />
+                                </ErrorBundary>
                             </div>
                         )
                     })

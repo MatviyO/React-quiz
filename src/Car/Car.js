@@ -12,13 +12,14 @@ class Car extends React.Component {
     }
     componentWillUpdate(nextProps, nextState, nextContext) {
     }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
     }
     componentWillUnmount() {
-
     }
 
     render() {
+
         const inputClasses = [classes.input]
         if (this.props.name !== '') {
             inputClasses.push(classes.green)
