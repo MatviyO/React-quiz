@@ -2,34 +2,39 @@ import React, {Component} from 'react';
 import appCSS from './App.css';
 import Car from './Car/Car'
 
-
 class App extends Component {
-    state = {
-        cars: [
-            {
-                name: 'Bmw 4 series ',
-                price: 21000,
-                img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'
-            },
-            {
-                name: 'Bmw 3 series ',
-                price: 19000,
-                img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'
-            },
-            {
-                name: 'Bmw 2 series ',
-                price: 18000,
-                img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'
-            },
-            {
-                name: 'Bmw 5 series ',
-                price: 25000,
-                img: 'http://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'
-            }
 
-        ],
-        pageTitle: 'React components',
-        showCars: false
+    constructor(props) {
+        console.log('app constructor')
+        super(props);
+        this.state = {
+            cars: [
+                {
+                    name: 'Bmw 4 series ',
+                    price: 21000,
+                    img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'
+                },
+                {
+                    name: 'Bmw 3 series ',
+                    price: 19000,
+                    img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'
+                },
+                {
+                    name: 'Bmw 2 series ',
+                    price: 18000,
+                    img: 'https://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'
+                },
+                {
+                    name: 'Bmw 5 series ',
+                    price: 25000,
+                    img: 'http://nahodim.com.ua/uploads/cars/new/bmw/241/xfgXKtIV86ZUQ2C8cUYH4CCV/slider_bmw_4-series-f36.jpg'
+                }
+
+            ],
+            pageTitle: 'React components',
+            showCars: false
+
+        }
     }
 
     toggleCarHandler = () => {
@@ -55,17 +60,22 @@ class App extends Component {
             cars: cars
         })
     }
-
+    componentWillMount() {
+        console.log('App componentWillMount')
+    }
+    componentDidMount() {
+        console.log('App componentDidMount')
+    }
 
     render() {
+        console.log('App render')
         const divStyle = {
             'color': 'red'
         }
-
         return (
             <div className={appCSS.App}>
-
                 <span style={divStyle}>{this.state.pageTitle}</span>
+                <span style={divStyle}>{this.props.title}</span>
                 <button className={'AppButton'} onClick={this.toggleCarHandler}>Toggle cars</button>
                 {this.state.showCars ?
                     this.state.cars.map((car, index) => {
