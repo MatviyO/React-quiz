@@ -1,23 +1,7 @@
 import React from 'react';
 import classes from './Car.css';
- // import Radium from 'radium';
 
 class Car extends React.Component {
-
-    componentWillReceiveProps(nextProps, nextContext) {
-
-    }
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return nextProps.name.trim() !== this.props.name.trim()
-    }
-    componentWillUpdate(nextProps, nextState, nextContext) {
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-    }
-    componentWillUnmount() {
-    }
-
     render() {
 
         const inputClasses = [classes.input]
@@ -29,7 +13,7 @@ class Car extends React.Component {
         if (this.props.name.length > 4) {
             inputClasses.push(classes.bold)
         }
-        const style = {
+        const style1 = {
             border: '1px solid #ccc',
             boxShadow: '0 4px 5px 0 rgba(0, 0, 0, .14',
             ':hover': {
@@ -39,7 +23,7 @@ class Car extends React.Component {
             }
         }
         return (
-            <div className={classes.Car} style={style}>
+            <div className={classes.Car} style={style1}>
                 <div >
                     <img className={classes.img} src={this.props.img} alt={this.props.name}/>
                 </div>
