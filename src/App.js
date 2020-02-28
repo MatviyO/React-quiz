@@ -90,10 +90,11 @@ class App extends Component {
                                 paddingTop: '20px'
                             }}>
                                 <ErrorBundary key={index}>
-                                <Car  name={car.name} price={car.price}
-                                     img={car.img}
-                                     onDelete={this.deleteHandler.bind(this, index)}
-                                     onChangeName={(event) => {
+                                <Car  name={car.name}
+                                      price={car.price}
+                                      img={car.img}
+                                      onDelete={this.deleteHandler.bind(this, index)}
+                                      onChangeName={(event) => {
                                          this.onChangeName(event.target.value, index)
                                      }}
                                 />

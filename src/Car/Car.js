@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Car.css';
-
+import withClass from '../hoc/with.Class';
+import PropTypes from 'prop-types';
 class Car extends React.Component {
     render() {
 
@@ -23,7 +24,8 @@ class Car extends React.Component {
             }
         }
         return (
-            <div className={classes.Car} style={style1}>
+            <React.Fragment>
+                <div style={style1}>
                 <div >
                     <img className={classes.img} src={this.props.img} alt={this.props.name}/>
                 </div>
@@ -34,9 +36,15 @@ class Car extends React.Component {
                     type="text" onChange={this.props.onChangeName}
                     value={this.props.name} />
                 <button onClick={this.props.onDelete}>Delete</button>
-            </div>
+                </div>
+            </React.Fragment>
         )
     }
 }
-
-export default Car
+Car.propTypes = {
+    name: PropTypes.string,
+    year: PropTypes.string,
+    onChangeName: ,
+    onDelete:
+}
+export default withClass(Car, classes.Car )
