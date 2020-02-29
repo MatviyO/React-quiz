@@ -3,6 +3,16 @@ import classes from './Car.css';
 import withClass from '../hoc/with.Class';
 import PropTypes from 'prop-types';
 class Car extends React.Component {
+    constructor(props) {
+        super(props);
+        this.inputRef = React.createRef()
+    }
+    componentDidMount() {
+        if (this.props.index === 1) {
+            this.inputRef.current.focus()
+        }
+    }
+
     render() {
 
         const inputClasses = [classes.input]
@@ -32,6 +42,7 @@ class Car extends React.Component {
                 <h3>{this.props.name}</h3>
                 <p>{this.props.price}</p>
                 <input
+                    ref={this.inputRef}
                     className={inputClasses.join(' ')}
                     type="text" onChange={this.props.onChangeName}
                     value={this.props.name} />
@@ -43,8 +54,10 @@ class Car extends React.Component {
 }
 Car.propTypes = {
     name: PropTypes.string,
-    year: PropTypes.string,
-    onChangeName: ,
-    onDelete:
+    price: PropTypes.number,
+    index: PropTypes.index,
+    img: PropTypes.string,
+    onChangeName: PropTypes.func,
+    onDelete: PropTypes.func
 }
 export default withClass(Car, classes.Car )

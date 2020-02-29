@@ -93,6 +93,7 @@ class App extends Component {
                                 <Car  name={car.name}
                                       price={car.price}
                                       img={car.img}
+                                      index={index}
                                       onDelete={this.deleteHandler.bind(this, index)}
                                       onChangeName={(event) => {
                                          this.onChangeName(event.target.value, index)
