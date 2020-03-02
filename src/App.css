@@ -42,3 +42,6 @@
   font-weight: bold;
   text-transform: uppercase;
 }
+.active {
+  color: red;
+}
