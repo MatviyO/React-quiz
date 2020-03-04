@@ -3,14 +3,19 @@ import classes from './Button.css';
 import button from "eslint-plugin-jsx-a11y/lib/util/implicitRoles/button";
 
 const Button = props => {
-    const classes
+    const cls = [
+        classes.Button,
+        classes[props.type]
+            
+
+    ]
     return (
         <button
             onClick={props.onClick}
-            className={classes.Button}
+            className={cls.join(' ')}
             disabled={props.disabled}
         >
-            {props.chidren}
+            {props.children}
         </button>
     )
 }
