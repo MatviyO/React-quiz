@@ -1,18 +1,29 @@
 import React, {Component} from 'react'
 import classes from './Drawer.css'
-import nav from "eslint-plugin-jsx-a11y/lib/util/implicitRoles/nav";
 import Backdrop from "../../UI/Backdrop/Backdrop";
+import {NavLink} from "react-router-dom";
 
 const links = [
-    1, 2, 3
+    {to: '/', label: 'List', exact: true},
+    {to: '/auth', label: 'Auth', exact: false},
+    {to: '/quiz-creator', label: 'Creator', exact: false}
+
 ]
 
 class Drawer extends Component {
+    clickHandler = () => {
+        this.props.onClose()
+    }
+
     renderLinks() {
         return links.map((link, index) => {
             return (
                 <li key={index}>
-                    <a>Link {link}</a>
+                    <NavLink to={link.to} exact={link.exact}
+                             onClick={this.clickHandler}
+                             activeClassName={classes.active}>
+                        {link.label}
+                    </NavLink>
                 </li>
             )
         })
