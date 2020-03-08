@@ -18,7 +18,11 @@ class App extends Component {
                         <Route path="/" component={QuizList} />
                     </Switch>
                 </Layout>
+                <div>
+                    
+                </div>
             </div>
+
         );
     };
 };
