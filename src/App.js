@@ -5,6 +5,7 @@ import Quiz from "./containers/quiz/Quiz";
 import QuizList from "./containers/QuizList/QuizList";
 import Auth from "./containers/Auth/auth";
 import QuizCreator from "./containers/QuizzCreator/QuizzCreator";
+import Todo from "./containers/Todo/Todo";
 
 class App extends Component {
     render() {
@@ -12,6 +13,7 @@ class App extends Component {
             <div className="App">
                 <Layout>
                     <Switch >
+                        <Route path="/todo" component={Todo} />
                         <Route path="/auth" component={Auth} />
                         <Route path="/quiz-creator" component={QuizCreator}/>
                         <Route path="/quiz/:id" component={Quiz}/>
