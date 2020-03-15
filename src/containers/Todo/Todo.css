@@ -1,11 +1,14 @@
 .Todo {
-    display: flex;
-    justify-content: center;
+    display: block;
     padding-top: 100px;
     flex-grow: 1;
     width: 100%;
     background: linear-gradient(90deg, #fd8355 0%, #f0576c 37%, #f79cbd 100%);
 
+}
+.Todo > div {
+    width: 700px;
+    margin-left: 600px;
 }
 .Todo h1 {
     color: #fff;
@@ -28,6 +31,8 @@
 
     color: #36f5;
 }
-
+.b {
+    margin: 20px;
+}
 
 
